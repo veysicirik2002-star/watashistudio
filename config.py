@@ -10,7 +10,7 @@ class Config:
     DATABASE_URL = os.environ.get('DATABASE_URL', 'smartlead.db')
     ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', '')
     GROQ_API_KEY = os.environ.get('GROQ_API_KEY', '')
-    GROQ_MODEL = os.environ.get('GROQ_MODEL', 'llama-3.3-70b-versatile')
+    GROQ_MODEL = os.environ.get('GROQ_MODEL', 'openai/gpt-oss-20b')
     AI_PROVIDER = os.environ.get('AI_PROVIDER', 'groq')
     CORS_ORIGINS = os.environ.get('CORS_ORIGINS', '*')
     CHAT_RATE_LIMIT = int(os.environ.get('CHAT_RATE_LIMIT', '20'))  # IP başına dakikada

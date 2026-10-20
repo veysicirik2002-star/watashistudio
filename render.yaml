@@ -14,7 +14,7 @@ services:
       - key: AI_PROVIDER
         value: groq
       - key: GROQ_MODEL
-        value: llama-3.3-70b-versatile
+        value: openai/gpt-oss-20b
       - key: CORS_ORIGINS
         value: "*"          # Wix adresi netleşince daralt
       - key: SECRET_KEY
