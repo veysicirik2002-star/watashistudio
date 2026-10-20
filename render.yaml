@@ -1,0 +1,25 @@
+# Render Blueprint: Dashboard > New > Blueprint ile bu repoyu bağla.
+services:
+  - type: web
+    name: watashi-studio
+    runtime: python
+    plan: free
+    region: frankfurt
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn run:app
+    healthCheckPath: /health
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: AI_PROVIDER
+        value: groq
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: CORS_ORIGINS
+        value: "*"          # Wix adresi netleşince daralt
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        sync: false         # Render panelinde elle girilir
+      - key: GROQ_API_KEY
+        sync: false         # Render panelinde elle girilir
