@@ -67,6 +67,7 @@ def sohbet():
         sonuc = ai_service.yanit_uret(mesaj, gecmis if isinstance(gecmis, list) else [])
         return jsonify({"basari": True, **sonuc}), 200
     except Exception:
+        current_app.logger.exception("[/api/sohbet] AI servisi hatası")
         return jsonify({"basari": False, "hata": "Beklenmeyen bir sunucu hatası oluştu."}), 500
 
 
@@ -94,6 +95,7 @@ def yeni_lead():
             "id": kayit_id
         }), 201
     except Exception:
+        current_app.logger.exception("[POST /api/leads] veritabanı hatası")
         return jsonify({"basari": False, "hata": "Kayıt sırasında veritabanı hatası oluştu."}), 500
 
 
@@ -103,6 +105,7 @@ def leadleri_getir():
     try:
         return jsonify({"basari": True, "leads": tum_leadler()}), 200
     except Exception:
+        current_app.logger.exception("[GET /api/leads] veritabanı hatası")
         return jsonify({"basari": False, "hata": "Kayıtlar alınırken hata oluştu."}), 500
 
 
@@ -114,4 +117,5 @@ def lead_sil_route(lead_id):
             return jsonify({"basari": True}), 200
         return jsonify({"basari": False, "hata": "Kayıt bulunamadı."}), 404
     except Exception:
+        current_app.logger.exception("[DELETE /api/leads] veritabanı hatası")
         return jsonify({"basari": False, "hata": "Silme sırasında hata oluştu."}), 500

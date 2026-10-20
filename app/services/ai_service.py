@@ -152,8 +152,8 @@ class AIService:
                 ek = (" Ziyaretçinin adı: " + ad + ".") if ad else ""
                 sonuc.update(cevap=self._canli_cevap(mesaj, gecmis, ek), mod="canli")
                 return sonuc
-            except AIServiceError:
-                pass  # canlı servis düştüyse akıllı demo moduna geç
+            except AIServiceError as e:
+                print("[ai_service] Canlı AI başarısız, demo moda geçildi:", e)  # Render loglarında görünür
 
         cevap = secili["cevap"]
         if ad and niyet and niyet["ad"] in ("selam", "teklif", "tesekkur"):
